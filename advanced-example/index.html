@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Advanced example</title>
+
+</head>
+
+<body>
+    <div id="root"></div>
+
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.17/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-custom-element@3.2.6/dist/vue-custom-element.js"></script>
+    <script src="webcomponent.js"></script>
+
+    <script>
+        // lista de eventos
+        var events = [
+            {
+                title: 'Formatura',
+                date: new Date(2018, 11, 7)
+            },
+            {
+                title: 'Criciúma Dev',
+                date: new Date(2018, 11, 8)
+            }
+        ];
+        
+        // seleciona elemento raiz
+        var root = document.getElementById('root');
+            
+        // cria nosso custom element e passa os dados necessários
+        events.forEach(event => {
+            var xComponent = document.createElement('x-component');
+            xComponent.title = event.title;
+            xComponent.date = event.date;
+            
+            // escuta o evento x-event do custom element
+            xComponent.addEventListener('x-event', function (event) {
+                var title = event.detail[0];
+
+                alert('O evento ' + title + ' foi clicadoooo');
+            });
+
+            root.appendChild(xComponent);
+        });
+    </script>
+</body>
+
+</html>

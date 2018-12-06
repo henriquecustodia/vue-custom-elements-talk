@@ -1,0 +1,6 @@
+<x-component 
+    *ngFor="let event of events" 
+    [title]="event.title" 
+    [date]="event.date" 
+    (x-event)="xEvent($event)">
+</x-component>
